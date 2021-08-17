@@ -1,5 +1,6 @@
 from hypothesis.strategies import composite, sampled_from, tuples, lists, one_of
 from hypothesis import given
+from strategies import *
 
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import OrdinalEncoder
@@ -7,20 +8,6 @@ import numpy as np
 import pytest
 
 #  Encode categorical features as a one-hot numeric array.
-
-gender_cats = ['male', 'female']
-browser_cats = ['Safari', 'IE', 'Firefox']
-from_cats = ["Europe", "US", "Japan"]
-
-@composite
-def cats(draw, max_size=1):
-    gender = sampled_from(gender_cats)
-    browser = sampled_from(browser_cats)
-    from_ = sampled_from(from_cats)
-    sample = tuples(gender, browser, from_)
-
-    return draw(lists(sample, max_size=max_size, min_size=1))
-
 
 @given(cats(20))
 def test_ordencoder(s):
