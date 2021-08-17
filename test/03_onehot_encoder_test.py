@@ -4,12 +4,14 @@ from strategies import *
 from sklearn.preprocessing import OneHotEncoder
 import numpy as np
 
+
 @given(cats(10))
 def test(s):
     enc = OneHotEncoder()
     enc.fit(s)
     assert enc.transform(s).toarray().shape[0] == len(s)
     assert np.all(enc.inverse_transform(enc.transform(s)) == s)
+
 
 @given(cats(1000))
 def test_shape(s):

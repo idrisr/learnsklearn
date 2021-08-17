@@ -2,22 +2,24 @@ from hypothesis.strategies import *
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OrdinalEncoder
 import pandas as pd
-
 
 #  applies transformers to columns of an array or pandas DataFrame
 
-#  df = pd.DataFrame(
-        #  {'city': ['London', 'London', 'Paris', 'Sallisaw'],
-            #  'title': ["His Last Bow", "How Watson Learned the Trick",
-                #  "A Moveable Feast", "The Grapes of Wrath"],
-            #  'expert_rating': [5, 3, 4, 5],
-            #  'user_rating': [4, 5, 4, 3]})
+df = pd.DataFrame(
+        {'city': ['London', 'London', 'Paris', 'London'],
+            'title': ["His Last Bow", "How Watson Learned the Trick",
+                "A Moveable Feast", "The Grapes of Wrath"],
+            'expert_rating': [5, 3, 4, 5],
+            'user_rating': [4, 5, 4, 3]})
 
 
-#  ct = ColumnTransformer(
-    #  [('city_category', OneHotEncoder(dtype='int'), 'city')],
-    #  remainder='drop')
+ct = ColumnTransformer(
+    [
+        ('city_category', OneHotEncoder(dtype='int'), ['city'])
+        ],
+    remainder='passthrough')
 
 
 #  ct.fit(df)
