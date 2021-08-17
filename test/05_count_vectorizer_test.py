@@ -1,19 +1,9 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from hypothesis.strategies import *
 from hypothesis import given
+from strategies import *
 import numpy as np
 
-
-# Convert a collection of text documents to a matrix of token counts
-
-sentence = 'it was the best of times it was the blurst of times'
-
-def corpus_strategy():
-    return lists(min_size=2, 
-            elements=lists(elements=sampled_from('it was the best of times, it\
-                was the blurst of times'.split()),
-                min_size=4).map(lambda x: " ".join(x))
-            )
 
 @given(corpus_strategy())
 def test_vectorizer(c):
