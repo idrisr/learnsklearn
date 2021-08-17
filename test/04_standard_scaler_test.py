@@ -1,6 +1,6 @@
 from sklearn.preprocessing import StandardScaler
 from hypothesis import given
-from hypothesis.strategies import *
+from hypothesis.strategies import tuples, integers, floats, nothing
 from hypothesis.extra.numpy import arrays
 import numpy as np
 import pytest
