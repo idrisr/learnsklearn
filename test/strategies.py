@@ -24,7 +24,7 @@ def Xy(draw):
             arrays(dtype=int, 
                 shape=(i, 1),
                 elements=sampled_from(range(10)),
-                ).filter(lambda x: np.unique(x).shape[0] > 5)
+                ).filter(lambda x: np.min(np.bincount(x.ravel())) > 2)
             )
     return (X, y)
 
