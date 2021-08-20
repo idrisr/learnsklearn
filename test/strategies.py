@@ -18,7 +18,9 @@ def Xy(draw):
     size = (i,j,)
     X = draw(arrays(dtype=float, 
             shape=(i, j),
-            elements = floats(allow_nan=False, allow_infinity=False)
+            elements = floats(allow_nan=False, 
+                allow_infinity=False, 
+                max_value=np.finfo(np.float32).max-1)
             ))
     y = draw(
             arrays(dtype=int, 
